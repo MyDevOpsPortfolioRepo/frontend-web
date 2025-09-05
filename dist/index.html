@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>DevOps Portfolio App</title></head>
+<body>
+  <h1>DevOps Portfolio App</h1>
+  <p>Simple frontend to call microservices. Replace the hostname or use the cluster LoadBalancer IP to access.</p>
+  <div id="content"></div>
+  <script>
+    async function getUsers(){
+      try{
+        const res = await fetch('/api/users');
+        const data = await res.json();
+        document.getElementById('content').innerText = JSON.stringify(data, null, 2);
+      }catch(e){
+        document.getElementById('content').innerText = 'Error: ' + e;
+      }
+    }
+    getUsers();
+  </script>
+</body>
+</html>
